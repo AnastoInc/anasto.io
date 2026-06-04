@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anasto | Join Waitlist</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #0066FF 0%, #00D4AA 100%);
+            padding: 2rem;
+        }
+        .container {
+            background: white;
+            padding: 3rem;
+            border-radius: 24px;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.2);
+            max-width: 500px;
+            width: 100%;
+        }
+        .logo {
+            font-family: 'Sora', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #0066FF, #00D4AA);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+        .subtitle {
+            text-align: center;
+            color: #6B7280;
+            margin-bottom: 2rem;
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        label {
+            display: block;
+            font-weight: 500;
+            color: #374151;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+        input, select {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            border: 2px solid #E5E7EB;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.2s;
+        }
+        input:focus, select:focus {
+            outline: none;
+            border-color: #0066FF;
+        }
+        button {
+            width: 100%;
+            padding: 1rem;
+            background: #0066FF;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: all 0.2s;
+        }
+        button:hover {
+            background: #0052CC;
+            transform: translateY(-1px);
+        }
+        button:disabled {
+            background: #9CA3AF;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .message {
+            text-align: center;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+            display: none;
+        }
+        .message.success {
+            background: #D1FAE5;
+            color: #065F46;
+            display: block;
+        }
+        .message.error {
+            background: #FEE2E2;
+            color: #991B1B;
+            display: block;
+        }
+        .back-link {
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+        .back-link a {
+            color: #6B7280;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        .back-link a:hover {
+            color: #0066FF;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">Anasto</div>
+        <p class="subtitle">Join the waitlist for early access</p>
+        
+        <form id="waitlist-form" action="https://formspree.io/f/xanywzgk" method="POST">
+            <div class="form-group">
+                <label for="name">Full Name *</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email Address *</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="role">I am a... *</label>
+                <select id="role" name="role" required>
+                    <option value="">Select your role</option>
+                    <option value="Clinician / Physician">Clinician / Physician</option>
+                    <option value="Engineer / Developer">Engineer / Developer</option>
+                    <option value="Researcher / Academic">Researcher / Academic</option>
+                    <option value="Institution / Hospital">Institution / Hospital</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="institution">Institution / Company</label>
+                <input type="text" id="institution" name="institution">
+            </div>
+            
+            <input type="hidden" name="_subject" value="New Anasto Waitlist Signup">
+            <input type="hidden" name="_next" value="https://anastoinc.github.io/anasto.io/thanks.html">
+            
+            <button type="submit">Join the Waitlist</button>
+        </form>
+        
+        <div class="back-link">
+            <a href="index.html">← Back to Anasto</a>
+        </div>
+    </div>
+</body>
+</html>
