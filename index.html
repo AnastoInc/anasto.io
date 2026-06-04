@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anasto | Where Clinical Vision Meets Engineering Excellence</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0066FF;
+            --primary-dark: #0052CC;
+            --primary-light: #E6F0FF;
+            --accent: #00D4AA;
+            --accent-dark: #00B894;
+            --dark: #0F172A;
+            --dark-secondary: #1E293B;
+            --gray-900: #111827;
+            --gray-800: #1F2937;
+            --gray-700: #374151;
+            --gray-600: #4B5563;
+            --gray-500: #6B7280;
+            --gray-400: #9CA3AF;
+            --gray-300: #D1D5DB;
+            --gray-200: #E5E7EB;
+            --gray-100: #F3F4F6;
+            --white: #FFFFFF;
+            --gradient-primary: linear-gradient(135deg, #0066FF 0%, #00D4AA 100%);
+            --gradient-dark: linear-gradient(180deg, #0F172A 0%, #1E293B 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--white);
+            color: var(--gray-900);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--gray-200);
+            transition: all 0.3s ease;
+        }
+
+        .nav-logo {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--gray-600);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-cta {
+            background: var(--primary);
+            color: var(--white) !important;
+            padding: 0.6rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .nav-cta:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 8rem 4rem 4rem;
+            background: linear-gradient(180deg, var(--white) 0%, var(--gray-100) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 80%;
+            height: 150%;
+            background: radial-gradient(circle, rgba(0, 102, 255, 0.08) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-family: 'Sora', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.15;
+            color: var(--dark);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-text h1 span {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            color: var(--gray-600);
+            margin-bottom: 2rem;
+            max-width: 540px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--primary);
+            color: var(--white);
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 102, 255, 0.3);
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--white);
+            color: var(--gray-700);
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+            border: 1px solid var(--gray-300);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 3rem;
+        }
+
+        .stat {
+            text-align: left;
+        }
+
+        .stat-value {
+            font-family: 'Sora', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--gray-500);
+        }
+
+        .hero-visual {
+            position: relative;
+        }
+
+        .hero-card {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 2rem;
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.12);
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-card-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .hero-card-avatar {
+            width: 56px;
+            height: 56px;
+            background: var(--gradient-primary);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .hero-card-info h3 {
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .hero-card-info p {
+            font-size: 0.9rem;
+            color: var(--gray-500);
+        }
+
+        .hero-card-content p {
+            color: var(--gray-700);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tag {
+            background: var(--primary-light);
+            color: var(--primary);
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .tag.accent {
+            background: rgba(0, 212, 170, 0.15);
+            color: var(--accent-dark);
+        }
+
+        .hero-card-match {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--gray-100);
+            padding: 1rem;
+            border-radius: 12px;
+        }
+
+        .match-info {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .match-avatars {
+            display: flex;
+        }
+
+        .match-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 2px solid var(--white);
+            margin-left: -10px;
+            background: var(--gray-300);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--gray-600);
+        }
+
+        .match-avatar:first-child {
+            margin-left: 0;
+        }
+
+        .match-avatar.ai {
+            background: var(--gradient-primary);
+            color: white;
+        }
+
+        .match-text {
+            font-size: 0.85rem;
+            color: var(--gray-600);
+        }
+
+        .match-text strong {
+            color: var(--dark);
+        }
+
+        .match-badge {
+            background: var(--accent);
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        /* How It Works */
+        .how-it-works {
+            padding: 6rem 4rem;
+            background: var(--white);
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 4rem;
+        }
+
+        .section-badge {
+            display: inline-block;
+            background: var(--primary-light);
+            color: var(--primary);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-family: 'Sora', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--gray-500);
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .step-card {
+            background: var(--gray-100);
+            border-radius: 20px;
+            padding: 2.5rem;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .step-card:hover {
+            background: var(--white);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .step-number {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            font-family: 'Sora', sans-serif;
+            font-size: 4rem;
+            font-weight: 700;
+            color: var(--gray-200);
+            line-height: 1;
+        }
+
+        .step-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-primary);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .step-card h3 {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 0.75rem;
+        }
+
+        .step-card p {
+            color: var(--gray-600);
+            font-size: 0.95rem;
+        }
+
+        /* Expertise Areas */
+        .expertise {
+            padding: 6rem 4rem;
+            background: var(--dark);
+            color: var(--white);
+        }
+
+        .expertise .section-badge {
+            background: rgba(0, 212, 170, 0.2);
+            color: var(--accent);
+        }
+
+        .expertise .section-title {
+            color: var(--white);
+        }
+
+        .expertise .section-subtitle {
+            color: var(--gray-400);
+        }
+
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .expertise-card {
+            background: var(--dark-secondary);
+            border: 1px solid var(--gray-700);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .expertise-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .expertise-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .expertise-card h3 {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--white);
+        }
+
+        .expertise-card p {
+            font-size: 0.85rem;
+            color: var(--gray-400);
+        }
+
+        /* AI Agents Section */
+        .ai-section {
+            padding: 6rem 4rem;
+            background: linear-gradient(180deg, var(--gray-100) 0%, var(--white) 100%);
+        }
+
+        .ai-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .ai-text h2 {
+            font-family: 'Sora', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 1.5rem;
+        }
+
+        .ai-text h2 span {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .ai-text p {
+            color: var(--gray-600);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .ai-features {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .ai-feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .ai-feature-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--primary-light);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .ai-feature-text h4 {
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 0.25rem;
+        }
+
+        .ai-feature-text p {
+            font-size: 0.9rem;
+            color: var(--gray-500);
+            margin: 0;
+        }
+
+        .ai-visual {
+            position: relative;
+        }
+
+        .ai-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+        }
+
+        .ai-card-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .ai-avatar {
+            width: 48px;
+            height: 48px;
+            background: var(--gradient-primary);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.25rem;
+        }
+
+        .ai-name h4 {
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .ai-name p {
+            font-size: 0.85rem;
+            color: var(--accent);
+            margin: 0;
+        }
+
+        .ai-status {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(0, 212, 170, 0.15);
+            color: var(--accent-dark);
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .ai-status::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .ai-chat {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .chat-message {
+            padding: 1rem;
+            border-radius: 12px;
+            max-width: 85%;
+        }
+
+        .chat-message.user {
+            background: var(--gray-100);
+            align-self: flex-end;
+            color: var(--gray-700);
+        }
+
+        .chat-message.ai {
+            background: var(--primary-light);
+            align-self: flex-start;
+            color: var(--dark);
+        }
+
+        .chat-message p {
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 6rem 4rem;
+            background: var(--gradient-primary);
+            text-align: center;
+        }
+
+        .cta-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .cta-content h2 {
+            font-family: 'Sora', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+
+        .cta-content p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .btn-white {
+            background: var(--white);
+            color: var(--primary);
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+        }
+
+        .btn-white:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-outline-white {
+            background: transparent;
+            color: var(--white);
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            transition: all 0.2s ease;
+        }
+
+        .btn-outline-white:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--white);
+        }
+
+        /* Footer */
+        footer {
+            padding: 4rem;
+            background: var(--dark);
+            color: var(--gray-400);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-logo {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            color: var(--gray-400);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--white);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            nav {
+                padding: 1rem 2rem;
+            }
+
+            .hero {
+                padding: 6rem 2rem 3rem;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .hero-stats {
+                justify-content: center;
+            }
+
+            .hero-visual {
+                display: none;
+            }
+
+            .steps-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .expertise-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .ai-content {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 2rem;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .expertise-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-logo">Anasto</div>
+        <ul class="nav-links">
+            <li><a href="#how-it-works">How It Works</a></li>
+            <li><a href="#expertise">Expertise</a></li>
+            <li><a href="#ai-agents">AI Agents</a></li>
+            <li><a href="#contact" class="nav-cta">Get Started</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Connect Clinical Vision with <span>Engineering Excellence</span></h1>
+                <p>The professional network where clinicians find world-class biomedical engineers, AI specialists, and computational experts to solve their toughest challenges.</p>
+                
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn-primary">
+                        Post a Project
+                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                    </a>
+                    <a href="#how-it-works" class="btn-secondary">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        See How It Works
+                    </a>
+                </div>
+
+                <div class="hero-stats">
+                    <div class="stat">
+                        <div class="stat-value">500+</div>
+                        <div class="stat-label">Expert Engineers</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value">24h</div>
+                        <div class="stat-label">Avg. Match Time</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value">95%</div>
+                        <div class="stat-label">Success Rate</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-visual">
+                <div class="hero-card">
+                    <div class="hero-card-header">
+                        <div class="hero-card-avatar">🏥</div>
+                        <div class="hero-card-info">
+                            <h3>Dr. Sarah Chen</h3>
+                            <p>Interventional Cardiologist • Cleveland Clinic</p>
+                        </div>
+                    </div>
+                    <div class="hero-card-content">
+                        <p>"I need CFD analysis to optimize a novel stent design for bifurcation lesions. Looking for expertise in blood flow simulation and device-tissue interaction modeling."</p>
+                        <div class="hero-card-tags">
+                            <span class="tag">CFD Analysis</span>
+                            <span class="tag">Stent Design</span>
+                            <span class="tag accent">Urgent</span>
+                        </div>
+                        <div class="hero-card-match">
+                            <div class="match-info">
+                                <div class="match-avatars">
+                                    <div class="match-avatar ai">🤖</div>
+                                    <div class="match-avatar">PM</div>
+                                    <div class="match-avatar">JK</div>
+                                </div>
+                                <div class="match-text">
+                                    <strong>3 matches</strong> available
+                                </div>
+                            </div>
+                            <span class="match-badge">View Matches</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="how-it-works" id="how-it-works">
+        <div class="section-header">
+            <span class="section-badge">Simple Process</span>
+            <h2 class="section-title">How Anasto Works</h2>
+            <p class="section-subtitle">From clinical challenge to solution in three simple steps</p>
+        </div>
+
+        <div class="steps-grid">
+            <div class="step-card">
+                <span class="step-number">01</span>
+                <div class="step-icon">📋</div>
+                <h3>Describe Your Challenge</h3>
+                <p>Post your clinical or research problem. Whether it's device design, computational modeling, or AI/ML for diagnostics — we understand your domain.</p>
+            </div>
+
+            <div class="step-card">
+                <span class="step-number">02</span>
+                <div class="step-icon">🎯</div>
+                <h3>Get Matched Instantly</h3>
+                <p>Our intelligent matching connects you with human experts or specialized AI agents — whichever best fits your project scope, timeline, and budget.</p>
+            </div>
+
+            <div class="step-card">
+                <span class="step-number">03</span>
+                <div class="step-icon">🚀</div>
+                <h3>Collaborate & Deliver</h3>
+                <p>Work together through our secure platform. Milestones, communication, and deliverables — all in one place with full audit trails.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="expertise" id="expertise">
+        <div class="section-header">
+            <span class="section-badge">Deep Expertise</span>
+            <h2 class="section-title">Engineering Disciplines</h2>
+            <p class="section-subtitle">Access world-class talent across the biomedical engineering spectrum</p>
+        </div>
+
+        <div class="expertise-grid">
+            <div class="expertise-card">
+                <div class="expertise-icon">🔬</div>
+                <h3>Computational Fluid Dynamics</h3>
+                <p>Blood flow, device hemodynamics, surgical planning</p>
+            </div>
+
+            <div class="expertise-card">
+                <div class="expertise-icon">⚙️</div>
+                <h3>Biomechanics</h3>
+                <p>Tissue mechanics, implant analysis, motion capture</p>
+            </div>
+
+            <div class="expertise-card">
+                <div class="expertise-icon">🧬</div>
+                <h3>Genetics & Bioinformatics</h3>
+                <p>Genomic analysis, variant interpretation, pipelines</p>
+            </div>
+
+            <div class="expertise-card">
+                <div class="expertise-icon">🤖</div>
+                <h3>AI & Machine Learning</h3>
+                <p>Medical imaging, diagnostics, predictive models</p>
+            </div>
+
+            <div class="expertise-card">
+                <div class="expertise-icon">🏥</div>
+                <h3>Medical Device Design</h3>
+                <p>Concept to prototype, FDA pathways, testing</p>
+            </div>
+
+            <div class="expertise-card">
+                <div class="expertise-icon">📊</div>
+                <h3>Clinical Data Science</h3>
+                <p>EHR analysis, outcomes research, RWE</p>
+            </div>
+
+            <div class="expertise-card">
+                <div class="expertise-icon">💊</div>
+                <h3>Drug Delivery Systems</h3>
+                <p>PK/PD modeling, formulation, targeted therapy</p>
+            </div>
+
+            <div class="expertise-card">
+                <div class="expertise-icon">🔧</div>
+                <h3>Regulatory & Quality</h3>
+                <p>510(k), CE marking, ISO compliance</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="ai-section" id="ai-agents">
+        <div class="ai-content">
+            <div class="ai-text">
+                <h2>Meet Your <span>AI Engineering Partners</span></h2>
+                <p>For projects that need immediate attention or specialized computation, our AI agents deliver expert-level analysis 24/7.</p>
+
+                <div class="ai-features">
+                    <div class="ai-feature">
+                        <div class="ai-feature-icon">⚡</div>
+                        <div class="ai-feature-text">
+                            <h4>Instant Availability</h4>
+                            <p>No scheduling, no waiting. Get expert analysis immediately.</p>
+                        </div>
+                    </div>
+
+                    <div class="ai-feature">
+                        <div class="ai-feature-icon">🎓</div>
+                        <div class="ai-feature-text">
+                            <h4>Domain-Trained Intelligence</h4>
+                            <p>Specialized in biomedical engineering, FDA regulations, and clinical workflows.</p>
+                        </div>
+                    </div>
+
+                    <div class="ai-feature">
+                        <div class="ai-feature-icon">🔒</div>
+                        <div class="ai-feature-text">
+                            <h4>HIPAA-Ready Infrastructure</h4>
+                            <p>Secure, compliant, and audit-trailed for healthcare applications.</p>
+                        </div>
+                    </div>
+
+                    <div class="ai-feature">
+                        <div class="ai-feature-icon">🤝</div>
+                        <div class="ai-feature-text">
+                            <h4>Human-AI Collaboration</h4>
+                            <p>AI handles routine analysis; humans tackle complex decisions.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ai-visual">
+                <div class="ai-card">
+                    <div class="ai-card-header">
+                        <div class="ai-avatar">🤖</div>
+                        <div class="ai-name">
+                            <h4>Monica</h4>
+                            <p>Biomedical AI Agent</p>
+                        </div>
+                        <span class="ai-status">Online</span>
+                    </div>
+
+                    <div class="ai-chat">
+                        <div class="chat-message user">
+                            <p>I need to analyze WSS distribution in a patient-specific aortic aneurysm model. Can you help?</p>
+                        </div>
+                        <div class="chat-message ai">
+                            <p>Absolutely. I can help you set up the CFD simulation. First, let me understand your imaging data format — is this CT or MRI? And do you have specific boundary conditions in mind for the inlet/outlet?</p>
+                        </div>
+                        <div class="chat-message user">
+                            <p>CT angiography. I have the DICOM files ready.</p>
+                        </div>
+                        <div class="chat-message ai">
+                            <p>Perfect. I'll guide you through segmentation → mesh generation → OpenFOAM setup. For patient-specific simulations, I recommend using pulsatile flow BCs from literature or Doppler data. Shall I start with the segmentation pipeline?</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section" id="contact">
+        <div class="cta-content">
+            <h2>Ready to Solve Your Challenge?</h2>
+            <p>Join the network where clinical innovation meets engineering excellence. Post your first project today.</p>
+            <div class="cta-buttons">
+                <a href="mailto:prahlad.menon@quant.md" class="btn-white">I'm a Clinician</a>
+                <a href="mailto:prahlad.menon@quant.md" class="btn-outline-white">I'm an Engineer</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">Anasto</div>
+            <div class="footer-links">
+                <a href="#">About</a>
+                <a href="#">For Clinicians</a>
+                <a href="#">For Engineers</a>
+                <a href="#">AI Agents</a>
+                <a href="mailto:prahlad.menon@quant.md">Contact</a>
+            </div>
+            <p>© 2026 Anasto. A ThinkCreate.AI Project.</p>
+        </div>
+    </footer>
+</body>
+</html>
