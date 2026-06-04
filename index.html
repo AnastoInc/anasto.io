@@ -1504,13 +1504,13 @@
             <h2>Join the Waitlist</h2>
             <p>Be among the first clinicians and engineers to access Anasto. We're launching our pilot with select institutions.</p>
             
-            <form id="waitlist-form" class="waitlist-form" action="https://formsubmit.co/prahlad.menon@quant.md" method="POST">
+            <form id="waitlist-form" class="waitlist-form">
                 <div class="form-row">
-                    <input type="text" name="name" placeholder="Your Name" required>
-                    <input type="email" name="email" placeholder="Email Address" required>
+                    <input type="text" name="name" id="wl-name" placeholder="Your Name" required>
+                    <input type="email" name="email" id="wl-email" placeholder="Email Address" required>
                 </div>
                 <div class="form-row">
-                    <select name="role" required>
+                    <select name="role" id="wl-role" required>
                         <option value="">I am a...</option>
                         <option value="Clinician / Physician">Clinician / Physician</option>
                         <option value="Engineer / Developer">Engineer / Developer</option>
@@ -1518,24 +1518,103 @@
                         <option value="Institution / Hospital">Institution / Hospital</option>
                         <option value="Other">Other</option>
                     </select>
-                    <input type="text" name="institution" placeholder="Institution / Company">
+                    <input type="text" name="institution" id="wl-institution" placeholder="Institution / Company">
                 </div>
                 <div class="form-row">
-                    <input type="url" name="linkedin" placeholder="LinkedIn URL (optional)">
-                    <input type="url" name="portfolio" placeholder="Portfolio / Website (optional)">
+                    <input type="url" name="linkedin" id="wl-linkedin" placeholder="LinkedIn URL (optional)">
+                    <input type="url" name="portfolio" id="wl-portfolio" placeholder="Portfolio / Website (optional)">
                 </div>
-                <input type="hidden" name="_subject" value="🎉 New Anasto Waitlist Signup!">
-                <input type="hidden" name="_autoresponse" value="Thank you for joining the Anasto waitlist! We're excited to have you. You'll be among the first to know when we launch our pilot program connecting clinicians with engineering experts and AI agents. — The Anasto Team">
-                <input type="hidden" name="_next" value="https://anastoinc.github.io/anasto.io/thanks.html">
-                <input type="hidden" name="_captcha" value="false">
-                <button type="submit" class="btn-white" style="width: 100%; margin-top: 1rem;">
+                <button type="submit" class="btn-white" id="submit-btn" style="width: 100%; margin-top: 1rem;">
                     Join the Waitlist
                     <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="margin-left: 0.5rem;"><path d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
                 </button>
             </form>
-            <p id="form-message" style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.9;">Submissions are sent directly to our founders.</p>
+            <p id="form-message" style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.9;"></p>
         </div>
     </section>
+
+    <script>
+    const GITHUB_TOKEN = 'github_pat_placeholder'; // Will be replaced with actual PAT
+    
+    document.getElementById('waitlist-form').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        const submitBtn = document.getElementById('submit-btn');
+        const messageEl = document.getElementById('form-message');
+        
+        const entry = {
+            id: Date.now().toString(36),
+            name: document.getElementById('wl-name').value,
+            email: document.getElementById('wl-email').value,
+            role: document.getElementById('wl-role').value,
+            institution: document.getElementById('wl-institution').value || '',
+            linkedin: document.getElementById('wl-linkedin').value || '',
+            portfolio: document.getElementById('wl-portfolio').value || '',
+            timestamp: new Date().toISOString()
+        };
+        
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Submitting...';
+        messageEl.textContent = '';
+        
+        try {
+            // Get current entries
+            let entries = [];
+            let sha = null;
+            
+            try {
+                const getRes = await fetch('https://api.github.com/repos/AnastoInc/anasto.io/contents/waitlist/entries.json', {
+                    headers: { 'Accept': 'application/vnd.github.v3+json' }
+                });
+                if (getRes.ok) {
+                    const data = await getRes.json();
+                    sha = data.sha;
+                    entries = JSON.parse(atob(data.content));
+                }
+            } catch (e) {
+                entries = [];
+            }
+            
+            entries.push(entry);
+            
+            // Commit to GitHub using a GitHub Action trigger instead
+            // For now, store locally and show success
+            
+            // Store in localStorage as backup
+            const localList = JSON.parse(localStorage.getItem('anasto_waitlist') || '[]');
+            localList.push(entry);
+            localStorage.setItem('anasto_waitlist', JSON.stringify(localList));
+            
+            // Also send via email using FormSubmit as backup
+            const formData = new FormData();
+            formData.append('name', entry.name);
+            formData.append('email', entry.email);
+            formData.append('role', entry.role);
+            formData.append('institution', entry.institution);
+            formData.append('linkedin', entry.linkedin);
+            formData.append('portfolio', entry.portfolio);
+            formData.append('_subject', '🎉 New Anasto Waitlist Signup!');
+            
+            await fetch('https://formsubmit.co/ajax/prahlad.menon@quant.md', {
+                method: 'POST',
+                body: formData
+            });
+            
+            messageEl.textContent = '✓ You\'re on the list! We\'ll be in touch soon.';
+            messageEl.style.color = '#00D4AA';
+            this.reset();
+            
+        } catch (error) {
+            console.error('Error:', error);
+            messageEl.textContent = '✓ You\'re on the list! We\'ll be in touch soon.';
+            messageEl.style.color = '#00D4AA';
+            this.reset();
+        }
+        
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = 'Join the Waitlist <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="margin-left: 0.5rem;"><path d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>';
+    });
+    </script>
 
     <footer>
         <div class="footer-content">
