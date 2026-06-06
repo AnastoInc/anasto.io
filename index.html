@@ -1553,7 +1553,6 @@
     <script>
     // Dual submission: Cloudflare Worker (GitHub storage) + FormSubmit (email notification)
     const WORKER_URL = 'https://anasto-waitlist.prahlad-menon.workers.dev';
-    const FORMSUBMIT_URL = 'https://formsubmit.co/ajax/prahlad.menon@quant.md';
     
     document.getElementById('waitlist-form').addEventListener('submit', async function(e) {
         e.preventDefault();
@@ -1580,20 +1579,40 @@
                 body: JSON.stringify({ name, email, role, institution, linkedin, portfolio })
             });
             
-            // 2. Send email via FormSubmit
-            const formData = new FormData();
-            formData.append('name', name);
-            formData.append('email', email);
-            formData.append('role', role);
-            formData.append('institution', institution);
-            formData.append('linkedin', linkedin);
-            formData.append('portfolio', portfolio);
-            formData.append('_subject', '🎉 New Anasto Waitlist Signup: ' + name);
+            // 2. Send email via FormSubmit (using iframe POST for proper submission)
+            const iframe = document.createElement('iframe');
+            iframe.name = 'formsubmit-frame';
+            iframe.style.display = 'none';
+            document.body.appendChild(iframe);
             
-            await fetch(FORMSUBMIT_URL, {
-                method: 'POST',
-                body: formData
-            });
+            const form = document.createElement('form');
+            form.method = 'POST';
+            form.action = 'https://formsubmit.co/prahlad.menon@quant.md';
+            form.target = 'formsubmit-frame';
+            
+            const fields = {
+                name, email, role, institution, linkedin, portfolio,
+                '_subject': '🎉 New Anasto Waitlist Signup: ' + name + ' (' + role + ')',
+                '_captcha': 'false',
+                '_template': 'table'
+            };
+            
+            for (const [key, value] of Object.entries(fields)) {
+                const input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = key;
+                input.value = value;
+                form.appendChild(input);
+            }
+            
+            document.body.appendChild(form);
+            form.submit();
+            
+            // Cleanup after a delay
+            setTimeout(() => {
+                iframe.remove();
+                form.remove();
+            }, 3000);
             
             if (workerRes.ok) {
                 messageEl.textContent = '✓ You\'re on the list! We\'ll be in touch soon.';
